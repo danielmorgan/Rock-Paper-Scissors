@@ -2,25 +2,38 @@
 
 #hand-select > [class*='col'] {
   background: $gray-light;
-  padding: 2em 0;
 }
 
 #hand-select .option {
-  padding: 7.5% 0;
+  margin: 15px 0;
+  padding: 0.25em 0;
+  background-color: $gray-lighter;
+  border: 1px solid $gray;
+  border-radius: $border-radius;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
   text-align: center;
   font-size: 2em;
   font-weight: bold;
   cursor: pointer;
-  color: $white;
-  transform: skewY(-5deg);
 
-  &.rock {
-    background-color: $rock;
+  &:hover {
+    background: $white;
+    border: 1px solid darken($gray, 10%);
   }
-  &.paper {
-    background-color: $paper;
+  &:active {
+    background: $white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px);
   }
-  &.scissors {
-    background-color: $scissors;
+
+  &#rock {
+    color: $rock;
+  }
+  &#paper {
+    color: $paper;
+  }
+  &#scissors {
+    color: $scissors;
   }
 }

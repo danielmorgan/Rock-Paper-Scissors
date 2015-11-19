@@ -1,0 +1,18 @@
+@import 'bootstrap-custom';
+@import 'variables';
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  background-color: $gray-light;
+  @media (min-width: $screen-sm) {
+    background-color: $gray;
+  }
+}
+
+#game {
+  @media (min-width: $screen-sm) {
+    margin-top: 2em;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+}

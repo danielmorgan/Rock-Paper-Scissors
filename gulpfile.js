@@ -28,7 +28,7 @@ gulp.task('sass', function() {
 
 
 gulp.task('js', function() {
-  return gulp.src('src/scripts/*.js')
+  return gulp.src('src/scripts/main.js')
     .pipe($.plumber())
     .pipe(through2.obj(function (file, enc, next) {
       browserify(file.path, { debug: true })

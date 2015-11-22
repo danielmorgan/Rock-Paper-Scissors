@@ -131,8 +131,14 @@ function game() {
     ctx.fillText(outcome, canvas.width / 2, canvas.height / 2);
 
     // Wait 2 seconds then hide the canvas again.
-    setTimeout(function() {
+    let showResult = setTimeout(function() {
       canvas.style.display = 'none';
-    }, 2000);
+    }, 2500);
+
+    // Hide the results if the user clicks on the canvas.
+    canvas.addEventListener('click', function() {
+      clearTimeout(showResult);
+      this.style.display = 'none';
+    })
   }
 }

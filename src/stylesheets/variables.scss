@@ -13,9 +13,9 @@ $brand-info:            #3498db;
 $brand-warning:         #e67e22;
 $brand-danger:          #c0392b;
 
-$rock:                  #c0392b;
-$paper:                 #3498db;
-$scissors:              #e67e22;
+$rock:                  rgba(247, 106, 99, 1);
+$paper:                 rgba(255, 215, 42, 1);
+$scissors:              rgba(45, 191, 155, 1);
 
 // Sizes
 $border-radius: 0.1em;
@@ -28,3 +28,5 @@ $border-radius: 0.1em;
   -ms-user-select: none;
   user-select: none;
 }
+
+.no-padding { padding: 0; }

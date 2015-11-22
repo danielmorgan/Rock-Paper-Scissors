@@ -3,25 +3,31 @@ import * as utility from './utility';
 window.addEventListener('load', game);
 
 function game() {
-  /** @type {array} **/
-  let hands = [
-    document.getElementById('rock'),
-    document.getElementById('paper'),
-    document.getElementById('scissors')
-  ];
-
   /** @type {object} **/
-  let rules = {
-    rock: { beats: 'scissors' },
-    scissors: { beats: 'paper' },
-    paper: { beats: 'rock' }
-  };
+  let hands = {
+    rock: {
+      el: document.getElementById('rock'),
+      color: 'rgba(247, 106, 99, 1)',
+      beats: 'scissors'
+    },
+    scissors: {
+      el: document.getElementById('scissors'),
+      color: 'rgba(45, 191, 155, 1)',
+      beats: 'paper'
+    },
+    paper: {
+      el: document.getElementById('paper'),
+      color: 'rgba(255, 215, 42, 1)',
+      beats: 'rock'
+    }
+  }
 
   /**
-   * When a button is clicked play that hand.
+   * Bind an event to each hand element so that when a button is clicked that
+   * hand is played.
    */
-  for (let hand of hands) {
-    hand.addEventListener('click', play);
+  for (let hand in hands) {
+    hands[hand].el.addEventListener('click', play);
   }
 
   /**
@@ -43,8 +49,8 @@ function game() {
    * @returns {DOMElement}
    */
   function chooseAiHand() {
-    let index = utility.randomInt(0, 2);
-    return hands[index];
+    let hand = utility.randomProperty(hands);
+    return hand.el;
   }
 
   /**
@@ -60,11 +66,44 @@ function game() {
     if (playerHand === aiHand) {
       console.log('Result:', 'draw');
     }
-    else if (rules[playerHand].beats === aiHand) {
+    else if (hands[playerHand].beats === aiHand) {
       console.log('Result:', 'win');
     }
     else {
       console.log('Result:', 'lose');
     }
+
+    playAnimation(playerHand, aiHand);
+  }
+
+  /**
+   * Play an animation showing which hand each player played.
+   *
+   * Just a simple test version for now.
+   *
+   * @param playerHand {string}
+   * @param aiHand {string}
+   */
+  function playAnimation(playerHand, aiHand) {
+    // Initialise canvas.
+    let container = document.getElementById('hand-select');
+    let canvas = document.getElementById('results');
+    let ctx = canvas.getContext('2d');
+
+    // Set the canvas size and make it visible.
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+    canvas.style.display = 'block';
+
+    // Fill canvas with a background to indicate the hand of each player.
+    ctx.fillStyle = hands[playerHand].color;
+    ctx.fillRect(0, 0, canvas.width / 2, canvas.height);
+    ctx.fillStyle = hands[aiHand].color;
+    ctx.fillRect(canvas.width / 2, 0, canvas.width, canvas.height);
+
+    // Wait 2 seconds then hide the canvas again.
+    setTimeout(function() {
+      canvas.style.display = 'none';
+    }, 2000);
   }
 }

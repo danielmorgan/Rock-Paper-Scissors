@@ -60,18 +60,18 @@ function game() {
    * @param aiHand {string}
    */
   function determineWinner(playerHand, aiHand) {
+    // Draw
     if (playerHand === aiHand) {
-      playAnimation(playerHand, aiHand);
-      alert('Draw');
+      playAnimation(playerHand, aiHand, 'Draw');
     }
+    // Win
     else if (hands[playerHand].beats === aiHand) {
-      playAnimation(playerHand, aiHand);
-      alert('You win!');
+      playAnimation(playerHand, aiHand, 'You win!');
       score(1, 'player');
     }
+    // Lose
     else {
-      playAnimation(playerHand, aiHand);
-      alert('You lose');
+      playAnimation(playerHand, aiHand, 'You lose');
       score(1, 'ai');
     }
   }
@@ -95,12 +95,13 @@ function game() {
    *
    * @param playerHand {string}
    * @param aiHand {string}
+   * @param outcome {string}
    */
-  function playAnimation(playerHand, aiHand) {
+  function playAnimation(playerHand, aiHand, outcome) {
     // Initialise canvas.
-    let container = document.getElementById('hand-select');
-    let canvas = document.getElementById('results');
-    let ctx = canvas.getContext('2d');
+    const container = document.getElementById('hand-select');
+    const canvas = document.getElementById('results');
+    const ctx = canvas.getContext('2d');
 
     // Set the canvas size and make it visible.
     canvas.width = container.offsetWidth;
@@ -113,9 +114,25 @@ function game() {
     ctx.fillStyle = hands[aiHand].color;
     ctx.fillRect(canvas.width / 2, 0, canvas.width, canvas.height);
 
+    // Draw the outcome
+    const outcomeRect = {
+      width: 250,
+      height: 80,
+      x: canvas.width / 2 - 125,
+      y: canvas.height / 2 - 40
+    };
+    ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+    ctx.fillRect(outcomeRect.x, outcomeRect.y, outcomeRect.width, outcomeRect.height);
+
+    ctx.fillStyle = 'rgba(50, 50, 50, 1)';
+    ctx.font = 'bold 32px Lato';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(outcome, canvas.width / 2, canvas.height / 2);
+
     // Wait 2 seconds then hide the canvas again.
     setTimeout(function() {
       canvas.style.display = 'none';
-    }, 20);
+    }, 2000);
   }
 }

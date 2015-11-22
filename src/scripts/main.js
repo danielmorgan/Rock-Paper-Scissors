@@ -60,20 +60,32 @@ function game() {
    * @param aiHand {string}
    */
   function determineWinner(playerHand, aiHand) {
-    console.log('Player:', playerHand);
-    console.log('AI:', aiHand);
-
     if (playerHand === aiHand) {
-      console.log('Result:', 'draw');
+      playAnimation(playerHand, aiHand);
+      alert('Draw');
     }
     else if (hands[playerHand].beats === aiHand) {
-      console.log('Result:', 'win');
+      playAnimation(playerHand, aiHand);
+      alert('You win!');
+      score(1, 'player');
     }
     else {
-      console.log('Result:', 'lose');
+      playAnimation(playerHand, aiHand);
+      alert('You lose');
+      score(1, 'ai');
     }
+  }
 
-    playAnimation(playerHand, aiHand);
+  /**
+   * Add points to a player's score.
+   *
+   * @param amount {number}
+   * @param who {string}
+     */
+  function score(amount, who) {
+    let amountEl = document.querySelectorAll('.' + who + ' > .amount')[0];
+    let newScore = Number(amountEl.innerHTML) + amount;
+    amountEl.innerHTML = newScore;
   }
 
   /**
@@ -104,6 +116,6 @@ function game() {
     // Wait 2 seconds then hide the canvas again.
     setTimeout(function() {
       canvas.style.display = 'none';
-    }, 2000);
+    }, 20);
   }
 }

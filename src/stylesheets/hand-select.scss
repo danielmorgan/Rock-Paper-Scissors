@@ -7,7 +7,7 @@
 #hand-select .option {
   position: relative;
   margin: 15px 0;
-  padding: 0.25em 0;
+  padding: 0.75em 0;
   background-color: $gray-lighter;
   border: 1px solid $gray;
   border-radius: $border-radius;
@@ -23,19 +23,29 @@
     background: $white;
     border: 1px solid darken($gray, 10%);
   }
-  &:active {
-    background: $white;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    transform: translateY(2px);
-  }
 
   &#rock {
     color: $rock;
+    &:active {
+      background: $rock;
+      border: 1px solid darken($rock, 20%);
+      color: #fff;
+    }
   }
   &#paper {
     color: $paper;
+    &:active {
+      background: $paper;
+      border: 1px solid darken($paper, 20%);
+      color: #fff;
+    }
   }
   &#scissors {
     color: $scissors;
+    &:active {
+      background: $scissors;
+      border: 1px solid darken($scissors, 20%);
+      color: #fff;
+    }
   }
 }

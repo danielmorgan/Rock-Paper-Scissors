@@ -62,16 +62,16 @@ function game() {
   function determineWinner(playerHand, aiHand) {
     // Draw
     if (playerHand === aiHand) {
-      playAnimation(playerHand, aiHand, 'Draw');
+      playAnimation(playerHand, aiHand, { state: 'draw', message: 'Draw' });
     }
     // Win
     else if (hands[playerHand].beats === aiHand) {
-      playAnimation(playerHand, aiHand, 'You win!');
+      playAnimation(playerHand, aiHand, { state: 'win', message: 'You win!' });
       score(1, 'player');
     }
     // Lose
     else {
-      playAnimation(playerHand, aiHand, 'You lose');
+      playAnimation(playerHand, aiHand, { state: 'lose', message: 'You lose' });
       score(1, 'ai');
     }
   }

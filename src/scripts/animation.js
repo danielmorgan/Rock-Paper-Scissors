@@ -1,55 +1,35 @@
 import Konva from 'konva';
 
-/**
- * Play an animation showing which hand each player played.
- *
- * Just a simple test version for now.
- *
- * @param playerHand {string}
- * @param aiHand {string}
- * @param outcome {string}
- */
 function playAnimation(playerHand, aiHand, outcome) {
-  // Initialise canvas.
-  const container = document.getElementById('hand-select');
-  const canvas = document.getElementById('results');
-  const ctx = canvas.getContext('2d');
+  var stage = new Konva.Stage({
+    container: 'results',
+    width: document.getElementById('results').offsetWidth,
+    height: document.getElementById('results').offsetHeight,
+  });
 
-  // Set the canvas size and make it visible.
-  canvas.width = container.offsetWidth;
-  canvas.height = container.offsetHeight;
-  canvas.style.display = 'block';
+  var layer = new Konva.Layer();
 
-  // Fill canvas with a background to indicate the hand of each player.
-  ctx.fillRect(0, 0, canvas.width / 2, canvas.height);
-  ctx.fillRect(canvas.width / 2, 0, canvas.width, canvas.height);
+  var hex = new Konva.RegularPolygon({
+    x: -25,
+    y: stage.height() / 2,
+    sides: 6,
+    radius: 50,
+    fill: 'red'
+  });
 
-  // Draw the outcome
-  const outcomeRect = {
-    width: 250,
-    height: 80,
-    x: canvas.width / 2 - 125,
-    y: canvas.height / 2 - 40
-  };
-  ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-  ctx.fillRect(outcomeRect.x, outcomeRect.y, outcomeRect.width, outcomeRect.height);
+  layer.add(hex);
+  stage.add(layer);
 
-  ctx.fillStyle = 'rgba(50, 50, 50, 1)';
-  ctx.font = 'bold 32px Lato';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(outcome, canvas.width / 2, canvas.height / 2);
+  var animation = new Konva.Animation(function(frame) {
+    hex.setX(frame.time / 5);
 
-  // Wait 2 seconds then hide the canvas again.
-  let showResult = setTimeout(function() {
-    canvas.style.display = 'none';
-  }, 2500);
+    if (hex.x() >= stage.width() / 2) {
+      this.stop();
+    }
+  }, layer);
 
-  // Hide the results if the user clicks on the canvas.
-  canvas.addEventListener('click', function() {
-    clearTimeout(showResult);
-    this.style.display = 'none';
-  })
+  animation.start();
 }
+window.addEventListener('load', playAnimation);
 
 export default playAnimation;

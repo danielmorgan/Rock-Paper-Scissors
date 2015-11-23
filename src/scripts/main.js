@@ -1,23 +1,21 @@
 import * as utility from './utility';
+import playAnimation from './animation';
 
 window.addEventListener('load', game);
 
 function game() {
-  /** @type {object} **/
-  let hands = {
+  /** @type {Object} **/
+  const hands = {
     rock: {
       el: document.getElementById('rock'),
-      color: 'rgba(247, 106, 99, 1)',
       beats: 'scissors'
     },
     scissors: {
       el: document.getElementById('scissors'),
-      color: 'rgba(45, 191, 155, 1)',
       beats: 'paper'
     },
     paper: {
       el: document.getElementById('paper'),
-      color: 'rgba(255, 215, 42, 1)',
       beats: 'rock'
     }
   }
@@ -27,14 +25,16 @@ function game() {
    * hand is played.
    */
   for (let hand in hands) {
-    hands[hand].el.addEventListener('click', play);
+    if (hands.hasOwnProperty(hand)) {
+      hands[hand].el.addEventListener('click', play);
+    }
   }
 
   /**
    * Take the user's inputted hand, generate the AI's hand, and pass them along
    * to be judged.
    *
-   * @param event {event}
+   * @param event {Object}
    */
   function play(event) {
     determineWinner(
@@ -46,7 +46,7 @@ function game() {
   /**
    * Using a random number generator pick one of the hands for the AI to play.
    *
-   * @returns {DOMElement}
+   * @returns {Element}
    */
   function chooseAiHand() {
     let hand = utility.randomProperty(hands);
@@ -81,64 +81,9 @@ function game() {
    *
    * @param amount {number}
    * @param who {string}
-     */
+   */
   function score(amount, who) {
     let amountEl = document.querySelectorAll('.' + who + ' > .amount')[0];
-    let newScore = Number(amountEl.innerHTML) + amount;
-    amountEl.innerHTML = newScore;
-  }
-
-  /**
-   * Play an animation showing which hand each player played.
-   *
-   * Just a simple test version for now.
-   *
-   * @param playerHand {string}
-   * @param aiHand {string}
-   * @param outcome {string}
-   */
-  function playAnimation(playerHand, aiHand, outcome) {
-    // Initialise canvas.
-    const container = document.getElementById('hand-select');
-    const canvas = document.getElementById('results');
-    const ctx = canvas.getContext('2d');
-
-    // Set the canvas size and make it visible.
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
-    canvas.style.display = 'block';
-
-    // Fill canvas with a background to indicate the hand of each player.
-    ctx.fillStyle = hands[playerHand].color;
-    ctx.fillRect(0, 0, canvas.width / 2, canvas.height);
-    ctx.fillStyle = hands[aiHand].color;
-    ctx.fillRect(canvas.width / 2, 0, canvas.width, canvas.height);
-
-    // Draw the outcome
-    const outcomeRect = {
-      width: 250,
-      height: 80,
-      x: canvas.width / 2 - 125,
-      y: canvas.height / 2 - 40
-    };
-    ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-    ctx.fillRect(outcomeRect.x, outcomeRect.y, outcomeRect.width, outcomeRect.height);
-
-    ctx.fillStyle = 'rgba(50, 50, 50, 1)';
-    ctx.font = 'bold 32px Lato';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(outcome, canvas.width / 2, canvas.height / 2);
-
-    // Wait 2 seconds then hide the canvas again.
-    let showResult = setTimeout(function() {
-      canvas.style.display = 'none';
-    }, 2500);
-
-    // Hide the results if the user clicks on the canvas.
-    canvas.addEventListener('click', function() {
-      clearTimeout(showResult);
-      this.style.display = 'none';
-    })
+    amountEl.innerHTML = Number(amountEl.innerHTML) + amount;
   }
 }

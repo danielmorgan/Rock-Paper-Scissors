@@ -1,17 +1,19 @@
 @import 'variables';
 
 #hand-select > [class*='col'] {
-  background: $gray-light;
+  background: rgba(0, 0, 0, 0.1);
+  mix-blend-mode: overlay;
 }
 
 #hand-select .option {
   position: relative;
   margin: 15px 0;
   padding: 0.75em 0;
-  background-color: $gray-lighter;
-  border: 1px solid $gray;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: $border-radius;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
   text-align: center;
   font-size: 2em;
@@ -20,7 +22,12 @@
   @include no-select();
 
   &:hover {
-    background: $white;
+    color: rgba(255, 255, 255, 1);
+    box-shadow: inset 0 0 2px rgba(255, 255, 255, 1),
+                inset 0 0 60px rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     border: 1px solid darken($gray, 10%);
   }
   @media (min-width: 768px) {
@@ -29,35 +36,50 @@
       transform: translateY(2px);
     }
   }
+}
 
-  &#rock {
-    color: $rock;
-    @media (min-width: 768px) {
-      &:active {
-        background: $rock;
-        border: 1px solid darken($rock, 20%);
-        color: #fff;
-      }
-    }
+
+
+/* Back Pulse */
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
   }
-  &#paper {
-    color: $paper;
-    @media (min-width: 768px) {
-      &:active {
-        background: $paper;
-        border: 1px solid darken($paper, 20%);
-        color: #fff;
-      }
-    }
+}
+
+@keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
   }
-  &#scissors {
-    color: $scissors;
-    @media (min-width: 768px) {
-      &:active {
-      background: $scissors;
-        border: 1px solid darken($scissors, 20%);
-        color: #fff;
-      }
-    }
-  }
+}
+
+.hvr-back-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-back-pulse:hover, .hvr-back-pulse:focus, .hvr-back-pulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #2098d1;
+  background-color: #2098d1;
+  color: white;
 }

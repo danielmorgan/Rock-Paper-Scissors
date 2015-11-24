@@ -31,6 +31,17 @@ function game() {
   }
 
   /**
+   * Bind an event to the start menu game mode buttons to start the game.
+   *
+   * Currently pressing any game mode button will just reveal the game without
+   * actually modifying any rules.
+   */
+  document.getElementsByClassName('game-mode')[0].addEventListener('click', function() {
+    document.getElementById('start-menu').style.display = 'none';
+    document.getElementById('game').style.display = 'block';
+  });
+
+  /**
    * Take the user's inputted hand, generate the AI's hand, and pass them along
    * to be judged.
    *

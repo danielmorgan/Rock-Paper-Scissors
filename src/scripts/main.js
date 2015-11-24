@@ -36,7 +36,7 @@ function game() {
    * Currently pressing any game mode button will just reveal the game without
    * actually modifying any rules.
    */
-  document.getElementsByClassName('game-mode')[0].addEventListener('click', function() {
+  document.getElementById('infinite').addEventListener('click', function() {
     document.getElementById('start-menu').style.display = 'none';
     document.getElementById('game').style.display = 'block';
   });

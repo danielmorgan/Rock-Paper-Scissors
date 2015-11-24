@@ -63,6 +63,7 @@ function game() {
     // Draw
     if (playerHand === aiHand) {
       playAnimation(playerHand, aiHand, { state: 'draw', message: 'Draw' });
+      score(1, 'draws');
     }
     // Win
     else if (hands[playerHand].beats === aiHand) {

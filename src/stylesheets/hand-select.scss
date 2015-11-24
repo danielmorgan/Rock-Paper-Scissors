@@ -58,7 +58,7 @@
     background-position: 0.5em center;
     background-size: 75px;
   }
-  &#rock::after { background-image: url('../images/fantasy/rock.png'); }
-  &#paper::after { background-image: url('../images/fantasy/paper.png'); }
+  &#rock::after { background-image:     url('../images/fantasy/rock.png'); }
+  &#paper::after { background-image:    url('../images/fantasy/paper.png'); }
   &#scissors::after { background-image: url('../images/fantasy/scissors.png'); }
 }

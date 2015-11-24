@@ -1,12 +1,5 @@
 @import 'variables';
 
-#start-menu > [class*='col'] {
-  background-color: #282537;
-  background: -webkit-radial-gradient(50% 25%, ellipse cover, rgba(104, 128, 138, 0.4) 10%, rgba(138, 114, 76, 0) 70%),
-  linear-gradient(to bottom, rgba(57,173,219,.35) 0%,rgba(42,60,87,.4) 100%),
-  linear-gradient(135deg, #451414 0%, #18233B 100%);
-}
-
 #start-menu h1 {
   margin-bottom: 0.5em;
   color: rgba(255, 255, 255, 1);
@@ -24,7 +17,7 @@ ul#game-modes {
     list-style: none;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 2px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     font-weight: bold;
     color: $brand-primary;
     &:not(.disabled) { cursor: pointer; }

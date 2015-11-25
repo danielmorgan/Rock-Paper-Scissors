@@ -8,15 +8,23 @@ function game() {
   const hands = {
     rock: {
       el: document.getElementById('rock'),
-      beats: 'scissors'
+      beats: ['scissors', 'lizard']
     },
     scissors: {
       el: document.getElementById('scissors'),
-      beats: 'paper'
+      beats: ['paper', 'lizard']
     },
     paper: {
       el: document.getElementById('paper'),
-      beats: 'rock'
+      beats: ['rock', 'spock']
+    },
+    lizard: {
+      el: document.getElementById('lizard'),
+      beats: ['paper', 'spock']
+    },
+    spock: {
+      el: document.getElementById('spock'),
+      beats: ['scissors', 'rock']
     }
   }
 
@@ -31,7 +39,7 @@ function game() {
   }
 
   /**
-   * Bind an event to the start menu game mode buttons to start the game.
+   * Bind an event to the start mgenu game mode buttons to start the game.
    *
    * Currently pressing any game mode button will just reveal the game without
    * actually modifying any rules.
@@ -77,7 +85,7 @@ function game() {
       score(1, 'draws');
     }
     // Win
-    else if (hands[playerHand].beats === aiHand) {
+    else if (hands[playerHand].beats.indexOf(aiHand) > -1) {
       playAnimation(playerHand, aiHand, { state: 'win', message: 'You win!' });
       score(1, 'player');
     }

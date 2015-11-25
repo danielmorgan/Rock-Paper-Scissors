@@ -4,7 +4,9 @@ function playAnimation(playerHand, aiHand, outcome) {
   const handColors = {
     rock: '#00afff',
     scissors: '#c5cae9',
-    paper: '#ffb74d'
+    paper: '#ffb74d',
+    lizard: '#00ff00',
+    spock: '#6666ff'
   }
 
   const hexRadius = 75;

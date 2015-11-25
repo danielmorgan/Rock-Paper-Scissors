@@ -57,8 +57,12 @@
     background-repeat: no-repeat;
     background-position: 0.5em center;
     background-size: 50px;
+    mix-blend-mode: overlay;
+    opacity: 0.75;
   }
-  &#rock::after { background-image:     url('../images/fantasy/rock.png'); }
-  &#paper::after { background-image:    url('../images/fantasy/paper.png'); }
-  &#scissors::after { background-image: url('../images/fantasy/scissors.png'); }
+  &#rock::after { background-image:     url('../images/hands/rock.png'); }
+  &#paper::after { background-image:    url('../images/hands/paper.png'); }
+  &#scissors::after { background-image: url('../images/hands/scissors.png'); }
+  &#lizard::after { background-image:   url('../images/hands/lizard.png'); }
+  &#spock::after { background-image:    url('../images/hands/spock.png'); }
 }

@@ -2,11 +2,11 @@ import Konva from 'konva';
 
 function playAnimation(playerHand, aiHand, outcome) {
   const handColors = {
-    rock: '#00afff',
+    rock: '#8a4c41',
     scissors: '#c5cae9',
-    paper: '#ffb74d',
-    lizard: '#00ff00',
-    spock: '#6666ff'
+    paper: '#ffe19f',
+    lizard: '#00c18a',
+    spock: '#748ebd'
   }
 
   const hexRadius = 75;
@@ -38,7 +38,7 @@ function playAnimation(playerHand, aiHand, outcome) {
     y: 0,
     width: stage.width(),
     height: stage.height(),
-    fill: 'rgba(0, 0, 0, 0.9)'
+    fill: 'rgba(50, 60, 80, 1)'
   });
 
   let hexL = new Konva.RegularPolygon({
@@ -47,8 +47,8 @@ function playAnimation(playerHand, aiHand, outcome) {
     radius: hexRadius,
     sides: 6,
     stroke: handColors[playerHand],
-    strokeWidth: 4,
-    fill: 'rgba(0, 0, 0, 0.9)'
+    strokeWidth: 6,
+    fill: 'rgba(0, 0, 0, 0.5)'
   });
   let hexR = new Konva.RegularPolygon({
     x: 0,
@@ -56,8 +56,8 @@ function playAnimation(playerHand, aiHand, outcome) {
     radius: hexRadius,
     sides: 6,
     stroke: handColors[aiHand],
-    strokeWidth: 4,
-    fill: 'rgba(0, 0, 0, 0.9)'
+    strokeWidth: 6,
+    fill: 'rgba(0, 0, 0, 0.5)'
   });
 
   let playerImgEl = document.getElementById('img-' + playerHand);

@@ -26,7 +26,6 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('dist/stylesheets'));
 });
 
-
 gulp.task('js', function() {
   return gulp.src('src/scripts/main.js')
     .pipe($.plumber())
@@ -34,20 +33,21 @@ gulp.task('js', function() {
       browserify(file.path, { debug: true })
         .transform(require('babelify'))
         .transform(require('debowerify'))
-        .bundle(function (err, res) {
-          if (err) { return next(err); }
+        .bundle(function(err, res) {
+          if (err) {
+            return next(err);
+          }
           file.contents = res;
-            next(null, file);
+          next(null, file);
         });
-      }))
-      .on('error', function (error) {
-        console.log(error.stack);
-        this.emit('end')
+    }))
+    .on('error', function(error) {
+      console.log(error.stack);
+      this.emit('end')
     })
-  .pipe( $.rename('app.js'))
-  .pipe( gulp.dest('dist/scripts/'));
+    .pipe($.rename('app.js'))
+    .pipe(gulp.dest('dist/scripts/'));
 });
-
 
 gulp.task('clean', function(cb) {
   del('./dist', cb);
@@ -55,23 +55,28 @@ gulp.task('clean', function(cb) {
 
 gulp.task('images', function() {
   return gulp.src('./src/images/**/*')
-    .pipe(gulp.dest('./dist/images'))
+    .pipe(gulp.dest('./dist/images'));
+})
+
+gulp.task('favicon', function() {
+  return gulp.src('./src/favicon.png')
+    .pipe(gulp.dest('./dist'));
 })
 
 gulp.task('templates', function() {
   return gulp.src('src/**/*.html')
     .pipe($.plumber())
-    .pipe( gulp.dest('dist/') )
+    .pipe(gulp.dest('dist/'));
 });
 
 
-
-gulp.task('build', ['sass', 'js', 'templates', 'images']);
+gulp.task('build', ['sass', 'js', 'templates', 'images', 'favicon']);
 
 gulp.task('serve', ['build', 'browser-sync'], function () {
   gulp.watch('src/stylesheets/**/*.{scss,sass}',['sass', reload]);
   gulp.watch('src/scripts/**/*.js',['js', reload]);
   gulp.watch('src/images/**/*',['images', reload]);
+  gulp.watch('src/favicon.png',['favicon', reload]);
   gulp.watch('src/*.html',['templates', reload]);
 });
 

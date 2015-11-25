@@ -4,8 +4,12 @@
   margin-bottom: 0.5em;
   color: rgba(255, 255, 255, 1);
   font-weight: 900;
-  font-size: 2.5em;
+  font-size: 1.8em;
   mix-blend-mode: overlay;
+
+  span {
+    color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 ul#game-modes {
@@ -46,6 +50,8 @@ ul#game-modes {
 
 #players {
   text-align: center;
+  margin-bottom: 2em;
+
   .vs {
     position: relative;
     top: 40px;

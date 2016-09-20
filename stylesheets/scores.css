@@ -1,0 +1,27 @@
+.no-padding {
+  padding: 0; }
+
+#scores > [class*='col'] {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-blend-mode: overlay; }
+
+#scores .score {
+  width: 33%;
+  float: left;
+  text-align: center;
+  padding: 1em 0;
+  color: #fff; }
+  #scores .score.draws {
+    margin-top: 12px;
+    font-size: 0.8em;
+    opacity: 0.4; }
+    #scores .score.draws span.amount {
+      font-weight: normal; }
+  #scores .score span {
+    display: block; }
+  #scores .score span.name {
+    font-size: 1.2em; }
+  #scores .score span.amount {
+    font-size: 1.5em;
+    font-weight: bold; }

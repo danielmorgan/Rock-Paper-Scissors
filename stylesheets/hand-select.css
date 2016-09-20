@@ -1,0 +1,62 @@
+.no-padding {
+  padding: 0; }
+
+#hand-select .option {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  margin: 15px 0;
+  padding: 0.5em 0;
+  color: rgba(255, 255, 255, 0.4);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  cursor: pointer; }
+  #hand-select .option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.5) 100%);
+    border: 1px solid white;
+    border-radius: 0.1em;
+    mix-blend-mode: overlay; }
+  #hand-select .option:hover::before {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.6) 100%); }
+  @media (min-width: 768px) {
+    #hand-select .option:active {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+      #hand-select .option:active::before {
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.5) 100%);
+        transform: translateY(1px); } }
+  #hand-select .option::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 0.5em center;
+    background-size: 50px;
+    mix-blend-mode: overlay;
+    opacity: 0.75; }
+  #hand-select .option#rock::after {
+    background-image: url("../images/hands/rock.png"); }
+  #hand-select .option#paper::after {
+    background-image: url("../images/hands/paper.png"); }
+  #hand-select .option#scissors::after {
+    background-image: url("../images/hands/scissors.png"); }
+  #hand-select .option#lizard::after {
+    background-image: url("../images/hands/lizard.png"); }
+  #hand-select .option#spock::after {
+    background-image: url("../images/hands/spock.png"); }
